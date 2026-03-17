@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Mail, Twitter, Linkedin, Github } from 'lucide-react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Contact() {
     const [formState, setFormState] = useState({ name: '', email: '', message: '' });
@@ -14,7 +16,7 @@ export default function Contact() {
 
         // ✅ Validation
         if (!formState.name || !formState.email || !formState.message) {
-            alert("All fields are required");
+            toast.error('All fields are required.');
             return;
         }
 
@@ -36,17 +38,26 @@ export default function Contact() {
 
             // ✅ Success
             setFormState({ name: '', email: '', message: '' });
-            alert("Message sent successfully!");
+            toast.success("Message sent! I'll get back to you within 24 hours.");
 
-        } catch (error: any) {
-            console.error(error);
-            alert(error.message || "Failed to send message");
+        } catch (error: unknown) {
+            const message = error instanceof Error ? error.message : 'Failed to send message.';
+            toast.error(message);
         } finally {
             setIsSubmitting(false);
         }
     };
 
     return (
+        <>
+        <ToastContainer
+            position="bottom-right"
+            autoClose={4000}
+            hideProgressBar={false}
+            closeOnClick
+            pauseOnHover
+            theme="colored"
+        />
         <section id="contact" className="py-32 bg-slate-50 dark:bg-slate-950">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -143,5 +154,6 @@ export default function Contact() {
                 </div>
             </div>
         </section>
+        </>
     );
 }

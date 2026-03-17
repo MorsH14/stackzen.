@@ -33,7 +33,7 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
                 {/* Logo */}
                 <a href="#" className="text-2xl font-bold tracking-tighter flex items-center gap-2.5 group">
                     <div className="w-9 h-9 bg-gradient-to-br from-violet-600 to-blue-500 rounded-xl flex items-center justify-center text-white text-sm font-black shadow-lg shadow-violet-500/30 group-hover:scale-110 transition-transform">
-                        S
+                        <img src="/assets/m.png" alt="" />
                     </div>
                     <span className="dark:text-white font-extrabold">Stackzen</span>
                 </a>

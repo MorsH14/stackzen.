@@ -25,7 +25,7 @@ export default function About() {
                         <div className="absolute -inset-4 bg-gradient-to-r from-violet-600 to-blue-500 rounded-3xl opacity-15 blur-2xl" />
                         <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                             <img
-                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80"
+                                src="/assets/r.jpeg"
                                 alt="Olamide Alade"
                                 className="w-full h-[580px] object-cover grayscale hover:grayscale-0 transition-all duration-700"
                             />
