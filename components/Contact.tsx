@@ -8,13 +8,42 @@ export default function Contact() {
     const [formState, setFormState] = useState({ name: '', email: '', message: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setIsSubmitting(true);
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        setIsSubmitting(false);
-        setFormState({ name: '', email: '', message: '' });
-        alert('Message sent! I\'ll get back to you within 24 hours.');
+
+        // ✅ Validation
+        if (!formState.name || !formState.email || !formState.message) {
+            alert("All fields are required");
+            return;
+        }
+
+        try {
+            setIsSubmitting(true);
+
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formState),
+            });
+
+            const data = await res.json();
+
+            // ✅ Check if request actually succeeded
+            if (!res.ok) {
+                throw new Error(data.message || "Something went wrong");
+            }
+
+            // ✅ Success
+            setFormState({ name: '', email: '', message: '' });
+            alert("Message sent successfully!");
+
+        } catch (error: any) {
+            console.error(error);
+            alert(error.message || "Failed to send message");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -33,26 +62,26 @@ export default function Contact() {
                         </p>
 
                         <div className="space-y-4">
-                            <a href="mailto:olamide@stackzen.dev" className="flex items-center gap-4 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-violet-400 dark:hover:border-violet-600 transition-colors group">
+                            <a href="mailto:midemorsh@gmail.com" className="flex items-center gap-4 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-violet-400 dark:hover:border-violet-600 transition-colors group">
                                 <div className="w-12 h-12 bg-violet-50 dark:bg-violet-900/20 rounded-full flex items-center justify-center text-violet-600 group-hover:scale-110 transition-transform">
                                     <Mail className="w-5 h-5" />
                                 </div>
                                 <div>
                                     <p className="text-xs text-slate-500 uppercase tracking-wide font-medium">Email</p>
-                                    <p className="font-semibold text-slate-900 dark:text-white">olamide@stackzen.dev</p>
+                                    <p className="font-semibold text-slate-900 dark:text-white">midemorsh@gmail.com</p>
                                 </div>
                             </a>
 
                             <div className="flex gap-3">
-                                <a href="#" className="flex-1 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-violet-400 dark:hover:border-violet-600 text-slate-700 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors flex items-center justify-center gap-2 text-sm font-semibold">
+                                <a target="_blank" href="https://x.com/midemorsh" className="flex-1 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-violet-400 dark:hover:border-violet-600 text-slate-700 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors flex items-center justify-center gap-2 text-sm font-semibold">
                                     <Twitter className="w-4 h-4" />
                                     Twitter
                                 </a>
-                                <a href="#" className="flex-1 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-violet-400 dark:hover:border-violet-600 text-slate-700 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors flex items-center justify-center gap-2 text-sm font-semibold">
+                                <a target="_blank" href="https://linkedin.com/in/olamide-alade-a86304360" className="flex-1 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-violet-400 dark:hover:border-violet-600 text-slate-700 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors flex items-center justify-center gap-2 text-sm font-semibold">
                                     <Linkedin className="w-4 h-4" />
                                     LinkedIn
                                 </a>
-                                <a href="#" className="flex-1 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-violet-400 dark:hover:border-violet-600 text-slate-700 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors flex items-center justify-center gap-2 text-sm font-semibold">
+                                <a target="_blank" href="https://github.com/MorsH14" className="flex-1 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-violet-400 dark:hover:border-violet-600 text-slate-700 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors flex items-center justify-center gap-2 text-sm font-semibold">
                                     <Github className="w-4 h-4" />
                                     GitHub
                                 </a>
