@@ -9,7 +9,7 @@ export default function Footer() {
                     {/* Logo */}
                     <div className="flex items-center gap-2.5">
                         <div className="w-8 h-8 bg-gradient-to-br from-violet-600 to-blue-500 rounded-lg flex items-center justify-center text-white font-black text-sm shadow-md shadow-violet-500/25">
-                            S
+                            <img src="/assets/m.png" alt="" />
                         </div>
                         <span className="text-lg font-extrabold dark:text-white tracking-tight">Stackzen</span>
                     </div>
@@ -19,13 +19,13 @@ export default function Footer() {
                     </p>
 
                     <div className="flex gap-5">
-                        <a href="#" className="text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">
+                        <a target="_blank" href="https://x.com/midemorsh" className="text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">
                             <Twitter className="w-5 h-5" />
                         </a>
-                        <a href="#" className="text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">
+                        <a target="_blank" href="https://linkedin.com/in/olamide-alade-a86304360" className="text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">
                             <Linkedin className="w-5 h-5" />
                         </a>
-                        <a href="#" className="text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">
+                        <a target="_blank" href="https://github.com/MorsH14" className="text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">
                             <Github className="w-5 h-5" />
                         </a>
                     </div>
